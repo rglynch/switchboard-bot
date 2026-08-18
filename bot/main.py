@@ -14,6 +14,9 @@ logging.basicConfig(
     format="%(asctime)s | %(name)-22s | %(levelname)-7s | %(message)s",
     level=getattr(logging, LOG_LEVEL, logging.INFO),
 )
+# This next line is a stopgap measure to prevent API keys from showing in the logs.
+# Without it, the bot token and the Finnhub token will be exposed in the logs.
+logging.getLogger("httpx").setLevel(logging.WARNING) 
 logger = logging.getLogger(__name__)
 
 
