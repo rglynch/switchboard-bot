@@ -9,10 +9,19 @@ Planned work, roughly in order. Not a changelog; the commit history covers what 
 - Configurable response map: keyword to reply, with optional media
 - `/gamepass` as an alias for `/gp`
 - Add `/teams` to the help text
+- Rename the environment in `environment.yml`, which still says `telegrambot`
+- Migrate the search dependency from `duckduckgo-search` to `ddgs`, the renamed package.
+  The old name still works but warns on every import.
+- Move the Finnhub key out of the query string and into a request header. httpx logs the
+  full request URL, so a credential passed as a query parameter ends up in the log. Finnhub
+  accepts header authentication, so this one can be fixed at the source.
+- Replace the httpx log silencing in `main.py` with a redacting log filter. Telegram puts the
+  bot token in the request path, so unlike the Finnhub key it cannot be moved out of the URL
+  at all. A filter can rewrite it out of the log record instead. Silencing removes the leak
+  and the per-request logging together; a filter keeps the second.
 - Rename the safe-search suffix from `e` to `o`, so the letters match the API's own
   values (off, moderate, strict) instead of needing a separate explanation
 - Make the default safe search level configurable rather than fixed in code
-
 - Accept `/chart` period and interval in either order. Detect a swap, say so, and still
   return the chart instead of erroring. Needs care where a value is valid in both sets.
 - Aliases and fuzzy matching for period and interval values, so `1mon` resolves to `1mo`.
