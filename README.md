@@ -149,7 +149,3 @@ No public endpoint needed (the bot uses polling, not webhooks).
 ## Disclaimer
 
 For informational/educational purposes only. Not financial advice. Market data from Yahoo Finance may be delayed.
-
-## License
-
-MIT
