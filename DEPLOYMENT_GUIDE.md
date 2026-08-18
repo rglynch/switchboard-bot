@@ -24,12 +24,12 @@ You can either reuse your existing bot or create a new one. Everything goes thro
 
 **Using your existing bot:**
 
-Your bot is already created — you just need a valid token. If you still have the token, skip to "Test your token" below. If the token was compromised (e.g. hardcoded in old code, shared in a chat), revoke it first:
+Your bot is already created, so you just need a valid token. If you still have the token, skip to "Test your token" below. If the token was compromised (e.g. hardcoded in old code, shared in a chat), revoke it first:
 
 1. Open [@BotFather](https://t.me/BotFather) on Telegram
 2. Send `/mybots`
 3. Select your bot from the list
-4. Tap **"API Token"**
+4. Tap **"API Token"** to view the token. If you don't need to revoke it, stop here and move on to "Test your token" below.
 5. Tap **"Revoke current token"** — this kills the old token immediately, so anything using it stops working
 6. BotFather gives you a new token — copy and save it somewhere safe
 
