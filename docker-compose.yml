@@ -2,4 +2,13 @@ services:
   bot:
     build: .
     restart: unless-stopped
-    env_file: .env
+    environment:
+      - TELEGRAM_BOT_TOKEN
+      - ANTHROPIC_API_KEY
+      - OPENAI_API_KEY
+      - GROK_API_KEY
+      - PERPLEXITY_API_KEY
+      - BRAVE_API_KEY
+      - FINNHUB_API_KEY
+      - ALLOWED_CHAT_IDS
+      - LOG_LEVEL
