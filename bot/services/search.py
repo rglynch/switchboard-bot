@@ -14,8 +14,8 @@ from dataclasses import dataclass
 from enum import Enum
 
 import httpx
-from duckduckgo_search import DDGS
-from duckduckgo_search.exceptions import DuckDuckGoSearchException
+from ddgs import DDGS
+from ddgs.exceptions import DDGSException
 
 logger = logging.getLogger(__name__)
 
@@ -198,7 +198,7 @@ def _ddg_search(
                 for r in raw
             ]
 
-    except DuckDuckGoSearchException:
+    except DDGSException:
         logger.exception("DDG search error")
         raise
     except Exception:
