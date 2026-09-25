@@ -3,7 +3,8 @@ Web search — Brave Search API primary, DuckDuckGo fallback.
 
 Brave: own index, 30B+ pages, $5 free credits/month (~1000 queries),
        full safe search control including off for images.
-DDG:   free, no key, but can't turn safe search off for images.
+DDG:   free, no key, but is a toss up which service it uses and 
+       each service may or may not support safe search off.
 
 If BRAVE_API_KEY is not set, everything falls back to DDG silently.
 """
@@ -175,9 +176,6 @@ def _ddg_search(
             ]
 
         elif search_type == SearchType.IMAGE:
-            if safe_search == SafeSearch.OFF:
-                ddg_safe = "moderate"
-                logger.info("DDG image search: forcing moderate (DDG blocks off)")
             raw = ddgs.images(query, safesearch=ddg_safe, max_results=count)
             return [
                 SearchResult(title=r.get("title", ""), url=r.get("image", ""), thumbnail_url=r.get("thumbnail", ""))
