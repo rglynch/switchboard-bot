@@ -1,4 +1,4 @@
-"""/flip — flip a coin 1 or N times."""
+"""/flip: flip a coin 1 or N times."""
 
 import random
 from telegram import Update

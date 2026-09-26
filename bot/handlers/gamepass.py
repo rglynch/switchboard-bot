@@ -1,8 +1,5 @@
 """
-/gp — latest Xbox Game Pass news via Xbox Wire RSS feed.
-
-Uses the official Xbox Wire RSS feed directly. No API key needed,
-no HTML scraping, and RSS format is stable across website redesigns.
+/gp: latest Xbox Game Pass news from the official Xbox Wire RSS feed. No API key needed.
 """
 
 import logging

@@ -40,7 +40,7 @@ async def on_easter_eggs(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None
     # ── APPL typo (works with or without $) ──────────────────────
     if "appl" in text_lower and "apple" not in text_lower:
         # Only trigger if they wrote "appl" as a stock-like reference
-        # Match: $appl, appl, APPL — but not "apple", "application", etc.
+        # Match: $appl, appl, APPL, but not "apple", "application", etc.
         if re.search(r"(?:^|\s|\$)appl(?:\s|$|[^a-zA-Z])", text_lower):
             try:
                 q = fetch_quote("AAPL")
@@ -145,7 +145,7 @@ async def cmd_chart(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
         await update.message.reply_photo(
             photo=buf,
             caption=(
-                f"{md.symbol} — {md.company_name}\n"
+                f"{md.symbol} ({md.company_name})\n"
                 f"{md.interval_label} candles · {md.period_label} period{indicator_str}"
             ),
         )
@@ -182,13 +182,13 @@ def register(app) -> None:
     app.add_handler(CommandHandler("chartv", cmd_chart))
     app.add_handler(CommandHandler("markets", cmd_markets))
 
-    # Easter eggs — fires on ALL text messages (no $ required), group 1
+    # Easter eggs fire on ALL text messages (no $ required), group 1
     app.add_handler(
         MessageHandler(filters.TEXT & ~filters.COMMAND, on_easter_eggs),
         group=1,
     )
 
-    # $SYMBOL detection — only fires on messages containing $, group 2
+    # $SYMBOL detection only fires on messages containing $, group 2
     # Runs after easter eggs so it can skip already-handled messages
     app.add_handler(
         MessageHandler(filters.TEXT & filters.Regex(r"\$[a-zA-Z]"), on_dollar_symbol),

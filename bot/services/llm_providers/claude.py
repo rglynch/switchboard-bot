@@ -12,7 +12,7 @@ DEFAULT_SYSTEM = (
 class ClaudeProvider(LLMProvider):
     name = "claude"
 
-    # Rolling aliases — auto-update to latest snapshot
+    # Model shortcuts. Each ID is one model version; pointing a shortcut at a newer model means editing it here.
     model_aliases = {
         "haiku":   "claude-haiku-4-5",
         "sonnet":  "claude-sonnet-4-6",

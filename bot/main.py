@@ -1,5 +1,5 @@
 """
-Bot entry point — registers all handlers and starts polling.
+Bot entry point: registers all handlers and starts polling.
 """
 
 import logging
@@ -47,7 +47,7 @@ def main() -> None:
     teams.register(app)
     songlink.register(app)  # group=2, runs after everything else
 
-    logger.info("Bot started — polling for updates …")
+    logger.info("Bot started, polling for updates …")
     app.run_polling(drop_pending_updates=True)
 
 

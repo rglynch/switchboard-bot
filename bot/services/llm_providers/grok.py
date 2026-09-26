@@ -1,7 +1,7 @@
 """xAI Grok provider with optional web search.
 
-Normal queries use /v1/chat/completions (fast, cheap).
-Web search queries use /v1/responses (required for server-side tools).
+Plain queries use /v1/chat/completions.
+Web search queries use /v1/responses, which server-side tools require.
 """
 
 import logging
@@ -50,7 +50,7 @@ class GrokProvider(LLMProvider):
             return await self._chat_api(message, model, headers, system_prompt)
 
     async def _chat_api(self, message: str, model: str, headers: dict, system_prompt: str | None) -> str:
-        """Standard chat completions — fast, no tools."""
+        """Standard chat completions: fast, no tools."""
         payload = {
             "model": model,
             "max_tokens": 1024,
@@ -67,7 +67,7 @@ class GrokProvider(LLMProvider):
         return resp.json()["choices"][0]["message"]["content"].strip()
 
     async def _responses_api(self, message: str, model: str, headers: dict, system_prompt: str | None) -> str:
-        """Responses API — required for server-side tools like web search."""
+        """Responses API, required for server-side tools like web search."""
         instructions = system_prompt or DEFAULT_SYSTEM
         payload = {
             "model": model,

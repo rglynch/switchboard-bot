@@ -1,4 +1,4 @@
-"""Perplexity Sonar provider — search-grounded AI answers."""
+"""Perplexity Sonar provider: search-grounded AI answers."""
 
 import httpx
 from bot.services.llm_providers.base import LLMProvider

@@ -1,6 +1,6 @@
 """
-LLM service — initializes and exposes the provider registry.
-Import `registry` from here and use it everywhere.
+LLM service: registers a provider for each API key that is set.
+Handlers import `registry` from here.
 """
 
 import logging

@@ -3,8 +3,9 @@ Market data retrieval.
 
 Strategy:
   - Quick quotes ($SYMBOL): Finnhub first (real-time), yfinance fallback
-  - Chart data (OHLCV): yfinance (Finnhub free tier doesn't do historical candles well)
-  - Market indices: yfinance (indices use ^ symbols that Finnhub handles differently)
+  - Chart data (OHLCV: open, high, low, close, volume): always yfinance
+  - Market indices: always yfinance
+Finnhub is used only for real-time quotes.
 
 If FINNHUB_API_KEY is not set, everything falls back to yfinance silently.
 """
@@ -158,7 +159,7 @@ def _finnhub_quote(symbol: str) -> QuoteData | None:
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# yfinance quote (fallback — delayed, but covers everything)
+# yfinance quote (fallback: delayed, but covers everything)
 # ═══════════════════════════════════════════════════════════════════════
 
 def _yfinance_quote(symbol: str) -> QuoteData:
@@ -227,7 +228,7 @@ def fetch_chart_data(symbol: str, period: str, interval: str) -> MarketData:
 
 
 def fetch_indices() -> dict[str, dict | None]:
-    """Current values for major market indices (always yfinance — handles ^ symbols)."""
+    """Current values for major market indices (always yfinance, which handles ^ symbols)."""
     indices = {
         "S&P 500": "^GSPC", "Nasdaq": "^IXIC", "Dow": "^DJI",
         "Russell": "^RUT", "VIX": "^VIX", "10Y Yield": "^TNX",

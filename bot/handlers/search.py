@@ -1,5 +1,5 @@
 """
-Search commands — provider-agnostic, backed by DuckDuckGo.
+Search commands: Brave Search API when configured, ddgs otherwise.
 
 Commands:
     /img query        → image search (strict safe search)
@@ -7,9 +7,9 @@ Commands:
     /imge query       → image search (safe search off)
     /imge4 query      → 4 images, safe search off
 
-    /web, /webm, /webe  → web search
-    /news, /newsm       → news search
-    /vid, /vidm         → video search
+    /web, /webm, /webe      → web search
+    /news, /newsm, /newse   → news search
+    /vid, /vidm, /vide      → video search
 
 Suffix grammar:
     m = moderate safe search
@@ -66,10 +66,6 @@ def _parse_command(command: str) -> tuple[SearchType, SafeSearch, int] | None:
 
     count = int(count_char) if count_char else DEFAULT_RESULTS
     count = min(count, MAX_RESULTS)
-
-    # DDG video search doesn't reliably support safe search off
-    if search_type == SearchType.VIDEO and safe == SafeSearch.OFF:
-        safe = SafeSearch.MODERATE
 
     return search_type, safe, count
 

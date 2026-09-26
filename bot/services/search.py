@@ -1,12 +1,12 @@
 """
-Web search — Brave Search API primary, DuckDuckGo fallback.
+Web search: Brave Search API primary, ddgs fallback.
 
-Brave: own index, 30B+ pages, $5 free credits/month (~1000 queries),
-       full safe search control including off for images.
-DDG:   free, no key, but is a toss up which service it uses and 
+Brave: official API with a key, full safe search control including
+       off for images.
+ddgs:  free, no key, but is a toss up which service it uses and
        each service may or may not support safe search off.
 
-If BRAVE_API_KEY is not set, everything falls back to DDG silently.
+If BRAVE_API_KEY is not set, everything falls back to ddgs silently.
 """
 
 import logging
@@ -73,7 +73,7 @@ def _brave_search(
 ) -> list[SearchResult] | None:
     """
     Try Brave Search. Returns None if not configured or on failure,
-    so caller can fall back to DDG.
+    so caller can fall back to ddgs.
     """
     if not BRAVE_API_KEY:
         return None
@@ -147,7 +147,7 @@ def _brave_search(
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# DuckDuckGo fallback
+# ddgs fallback
 # ═══════════════════════════════════════════════════════════════════════
 
 _DDG_SAFE_MAP = {
@@ -163,7 +163,7 @@ def _ddg_search(
     safe_search: SafeSearch,
     count: int,
 ) -> list[SearchResult]:
-    """DuckDuckGo search. Always available, no key needed."""
+    """ddgs search. Always available, no key needed; safe search is best-effort."""
     ddgs = DDGS()
     ddg_safe = _DDG_SAFE_MAP[safe_search]
 
@@ -207,7 +207,7 @@ def _ddg_search(
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# Public API — tries Brave first, falls back to DDG
+# Public API: tries Brave first, falls back to ddgs
 # ═══════════════════════════════════════════════════════════════════════
 
 def search(
@@ -218,7 +218,7 @@ def search(
 ) -> list[SearchResult]:
     """
     Search the web. Tries Brave first (if configured),
-    falls back to DuckDuckGo.
+    falls back to ddgs.
     """
     count = min(count, 5)
 

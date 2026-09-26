@@ -1,6 +1,6 @@
 """
-Central configuration for the bot.
-All environment variables, feature flags, and constants live here.
+Central configuration for the bot: most environment variables and shared constants.
+Search, market data and usage limits read their own settings in their modules.
 """
 
 import os
@@ -29,12 +29,12 @@ def get_allowed_chat_ids() -> set[int] | None:
     try:
         return {int(cid.strip()) for cid in raw.split(",") if cid.strip()}
     except ValueError:
-        logger.warning("Invalid ALLOWED_CHAT_IDS — ignoring allowlist")
+        logger.warning("Invalid ALLOWED_CHAT_IDS, ignoring allowlist")
         return None
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# Search (DuckDuckGo — free, no key needed)
+# Search (Brave Search API with a key, keyless ddgs fallback)
 # ═══════════════════════════════════════════════════════════════════════
 
 SEARCH_MAX_RESULTS: int = 5

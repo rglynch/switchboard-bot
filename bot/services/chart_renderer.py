@@ -1,7 +1,7 @@
 """
 Candlestick chart rendering with a TradingView-inspired dark theme.
 
-Supports optional indicators: rsi, macd, bb (Bollinger Bands).
+Supports optional indicators: rsi, macd, bb (Bollinger Bands), vwap.
 Usage: render(market_data, indicators=["rsi", "bb"])
 """
 

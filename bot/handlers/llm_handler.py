@@ -5,7 +5,7 @@ Syntax:
     /ask question                   → default provider, default model
     /ask:claude question            → Claude, default Claude model
     /ask:claude:haiku question      → Claude, Haiku model
-    /ask:grok:fast question         → Grok, grok-4.1-fast
+    /ask:grok:fast question         → Grok, grok-4-1-fast
     /search query                   → always Perplexity Sonar
     /search:pro query               → Perplexity Sonar Pro
     /models                         → show available providers and allowed models
@@ -89,7 +89,7 @@ async def cmd_ask(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
 
         model_short = used_model.split("/")[-1]
         web_tag = ":web" if web_search else ""
-        footer = f"— [{used_provider}:{model_short}{web_tag}]"
+        footer = f"[{used_provider}:{model_short}{web_tag}]"
         if warning:
             footer += f"\n{warning}"
 

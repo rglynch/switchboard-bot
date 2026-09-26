@@ -35,7 +35,7 @@ class LLMProvider(ABC):
         allowed = get_allowed_models(self.name)
 
         if not shorthand:
-            # Using default model — always permitted
+            # Using the default model, which is always permitted
             return self.default_model
 
         key = shorthand.lower()
@@ -55,7 +55,7 @@ class LLMProvider(ABC):
         return self.model_aliases.get(key, shorthand)
 
     def allowed_models_list(self) -> list[str]:
-        """Return the list of models users can actually use."""
+        """Return the list of models users are allowed to use."""
         allowed = get_allowed_models(self.name)
         if allowed is None:
             return list(self.model_aliases.keys())

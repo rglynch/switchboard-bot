@@ -1,6 +1,6 @@
 """
-Usage tracker — monthly request counting with configurable limits
-and funny exhaustion messages.
+Usage tracker: monthly request counting with configurable limits,
+and joke messages when a limit is hit.
 """
 
 import json

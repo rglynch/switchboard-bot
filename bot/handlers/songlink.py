@@ -38,7 +38,7 @@ async def on_message(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
 
     label = ""
     if result.title and result.artist:
-        label = f"🎵 {result.title} — {result.artist}\n"
+        label = f"🎵 {result.title} by {result.artist}\n"
     elif result.title:
         label = f"🎵 {result.title}\n"
 

@@ -1,4 +1,4 @@
-"""/teams — random team splitter."""
+"""/teams: random team splitter."""
 
 import random
 from telegram import Update

@@ -1,4 +1,4 @@
-"""Songlink / Odesli API client — resolves music URLs to cross-platform links."""
+"""Songlink / Odesli API client: resolves music URLs to cross-platform links."""
 
 import logging
 from dataclasses import dataclass

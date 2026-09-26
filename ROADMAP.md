@@ -9,9 +9,6 @@ Planned work, roughly in order. Not a changelog; the commit history covers what 
 - Configurable response map: keyword to reply, with optional media
 - `/gamepass` as an alias for `/gp`
 - Add `/teams` to the help text
-- Rename the environment in `environment.yml`, which still says `telegrambot`
-- Migrate the search dependency from `duckduckgo-search` to `ddgs`, the renamed package.
-  The old name still works but warns on every import.
 - Move the Finnhub key out of the query string and into a request header. httpx logs the
   full request URL, so a credential passed as a query parameter ends up in the log. Finnhub
   accepts header authentication, so this one can be fixed at the source.
@@ -39,5 +36,5 @@ Planned work, roughly in order. Not a changelog; the commit history covers what 
 - Saved text: `/save` a line, `/recall` it later
 - Storage target for saved text. A database keeps everything in one place; an external
   doc API means the result stays readable and editable without building a frontend.
-  Every current integration authenticates with a bearer key, so an OAuth2 provider
-  would be new ground.
+  A doc API may require OAuth2 sign-in, which the bot has never needed: every current
+  integration uses a static API key or none.
