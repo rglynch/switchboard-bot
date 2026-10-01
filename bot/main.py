@@ -3,12 +3,8 @@ Bot entry point: registers all handlers and starts polling.
 """
 
 import logging
-import os
-
-from telegram.ext import ApplicationBuilder
-
 from bot.config import TELEGRAM_BOT_TOKEN, LOG_LEVEL, features_summary
-from bot.handlers import help, stocks, search, llm_handler, songlink, gamepass, flip, teams
+from telegram.ext import ApplicationBuilder
 
 logging.basicConfig(
     format="%(asctime)s | %(name)-22s | %(levelname)-7s | %(message)s",
@@ -18,6 +14,9 @@ logging.basicConfig(
 # Without it, the bot token and the Finnhub token will be exposed in the logs.
 logging.getLogger("httpx").setLevel(logging.WARNING) 
 logger = logging.getLogger(__name__)
+
+# These are imported after logging is set up so that their log calls use the proper format.
+from bot.handlers import help, stocks, search, llm_handler, songlink, gamepass, flip, teams
 
 
 def main() -> None:
@@ -45,7 +44,7 @@ def main() -> None:
     gamepass.register(app)
     flip.register(app)
     teams.register(app)
-    songlink.register(app)  # group=2, runs after everything else
+    songlink.register(app)  # group=3, runs after everything else
 
     logger.info("Bot started, polling for updates …")
     app.run_polling(drop_pending_updates=True)

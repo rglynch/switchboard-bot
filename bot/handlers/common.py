@@ -14,6 +14,7 @@ def allowed_only(func):
     @functools.wraps(func)
     async def wrapper(update: Update, ctx: ContextTypes.DEFAULT_TYPE, *a, **kw):
         if _ALLOWED is not None and update.effective_chat.id not in _ALLOWED:
+            logger.info("Update received from unauthorized chat: %s", update.effective_chat.id)
             return
         return await func(update, ctx, *a, **kw)
     return wrapper

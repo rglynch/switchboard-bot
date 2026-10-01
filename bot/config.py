@@ -25,11 +25,14 @@ LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO").upper()
 def get_allowed_chat_ids() -> set[int] | None:
     raw = os.getenv("ALLOWED_CHAT_IDS", "").strip()
     if not raw:
+        logger.warning("ALLOWED_CHAT_IDS is not set, allowing all chats (dangerous)!")
         return None
     try:
-        return {int(cid.strip()) for cid in raw.split(",") if cid.strip()}
+        chat_ids = {int(cid.strip()) for cid in raw.split(",") if cid.strip()}
+        logger.info("ALLOWED_CHAT_IDS is set, restricting access to: %s", chat_ids)
+        return chat_ids
     except ValueError:
-        logger.warning("Invalid ALLOWED_CHAT_IDS, ignoring allowlist")
+        logger.warning("Invalid ALLOWED_CHAT_IDS, ignoring allowlist (dangerous)!")
         return None
 
 
@@ -157,6 +160,6 @@ def features_summary() -> dict[str, bool]:
         "stock_chart":    True,
         "stock_quote":    True,
         "songlink":       True,
-        "gamepass":        True,
+        "gamepass":       True,
         "flip":           True,
     }
