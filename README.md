@@ -2,7 +2,7 @@
 
 Switchboard is a public version of the Telegram bot my friends and I use every day in our group chat: stock quotes and charts, questions to four AI models, web and image search, and music links that open on any service.
 
-I wrote the original version from scratch in 2021, split between AWS Lambda and a self-hosted charting service. It now runs as one Docker deployment on Railway. In 2026 I directed an AI model through a rebuild: I gave it my old bot, my requirements, and what I wanted improved. Then I worked through the result to understand it, break it, fix it, and modify it. This repository is that rework, cleaned up for public release, and it is where changes are made before they go to the version my friends use.
+I wrote the original version from scratch in 2021, split between AWS Lambda and a self-hosted charting service. It now runs as one Docker deployment on Railway. In 2026, I directed an AI model through a rebuild: I gave it my old bot, my requirements, and what I wanted improved. Then I worked through the result to understand it, break it, fix it, and modify it. This repository is that rework, cleaned up for public release, and it is where changes are made before they go to the version my friends use.
 
 ## Features
 
