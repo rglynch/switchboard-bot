@@ -47,7 +47,7 @@ def main() -> None:
     songlink.register(app)  # group=3, runs after everything else
 
     logger.info("Bot started, polling for updates …")
-    app.run_polling(drop_pending_updates=True)
+    app.run_polling(drop_pending_updates=True, allowed_updates=["message"])
 
 
 if __name__ == "__main__":
