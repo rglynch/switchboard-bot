@@ -8,7 +8,7 @@ from telegram import Update
 from telegram.ext import ContextTypes, MessageHandler, filters
 
 from bot.config import MUSIC_DOMAINS
-from bot.handlers.common import allowed_only
+from bot.handlers.common import allowed_only, handle_errors
 from bot.services.songlink import resolve
 
 logger = logging.getLogger(__name__)
@@ -24,6 +24,7 @@ def _is_music_url(url: str) -> bool:
 
 
 @allowed_only
+@handle_errors
 async def on_message(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> None:
     text = update.message.text or update.message.caption or ""
     urls = _URL_RE.findall(text)
